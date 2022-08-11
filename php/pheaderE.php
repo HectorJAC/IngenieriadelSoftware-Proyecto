@@ -25,9 +25,9 @@
     <!-- link rel="stylesheet" href="bulma/css/bulma.min.css" -->
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/trabajo final/library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/Proyecto - Ingenieria del Software/library/fontawesome/css/all.min.css">
 
-    <title> Proyecto Final </title>
+    <title> Plataforma de Aprendizaje </title>
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                             </span>
                         </a>
 
-                        <a class="button is-primary" href="/trabajo final/php/cerrar.php">
+                        <a class="button is-primary" href="/Proyecto - Ingenieria del Software/php/cerrar.php">
                             <span class="icon">
                                 <i class="fas fa-sign-out-alt"></i>
                             </span>
@@ -64,10 +64,10 @@
     <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        Proyecto Final de Programacion 2
+        Plataforma de Aprendizaje
       </h1>
       <h2 class="subtitle">
-        To-Do. Vista Profesor-Estudiante
+        Proyecto Ingenieria del Software
       </h2>
     </div>
   </div>
@@ -83,7 +83,19 @@
                         Lista de acciones 
                     </p>
                     <ul class="menu-list">
-                        <li> <a href="/trabajo final/acciones/asig-mant.php"> Realizar una tarea </a></li>
+                        <li> <a href="/Proyecto - Ingenieria del Software/acciones/libros-verE.php"> Ver todos los libros </a> </li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li> <a href="/Proyecto - Ingenieria del Software/acciones/libros-topicosE.php"> Ver libros de interes </a> </li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li> <a href="/Proyecto - Ingenieria del Software/acciones/cursos-verE.php"> Ver todos los cursos </a></li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li> <a href="/Proyecto - Ingenieria del Software/acciones/cursos-miosE.php"> Mis Cursos </a></li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li> <a href="/Proyecto - Ingenieria del Software/sobre-nosotrosE.php"> Contactanos </a> </li>
                     </ul>
                 </aside>
             </div>

@@ -1,6 +1,7 @@
 <?php
     include_once("./php/conexiondb.php");
     include_once("./php/consultas.php");
+    $resultadoTopicos = MostrarTopicos($link);
 
     //Accion luego de presionar el boton de login
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,13 +27,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Style Bulma -->
-    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">-->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
     <link rel="stylesheet" href="bulma/css/bulma.min.css"/>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/Proyecto - Ingenieria del Software/library/fontawesome/css/all.min.css">
 
-    <title> Plataforma de Aprendizaje </title>
+    <title> Platafroma de Aprendizaje </title>
 </head>
 <body>
     
@@ -44,7 +45,7 @@
                     Plataforma de aprendizaje
                 </h1>
                 <h2 class="subtitle">
-                    Proyecto - Ingenieria del Software
+                    Registrar como estudiante
                 </h2>
             </div>
         </div>
@@ -61,45 +62,65 @@
                         </div>
                         <div class="card-content">
                             <div class="content">
-                            <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data" autocomplete="off" >
+                            <form action="./acciones/estudiante-crud.php?accion=INS" method="POST" enctype="multipart/form-data" autocomplete="off" >
+                                
+                                <div class="field">
+                                    <label class="label"> Nombre </label>
+                                        <div class="control">
+                                            <input class="input" type="text" id="nombre" name="nombre" placeholder="Nombre" >
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label"> Apellido </label>
+                                        <div class="control">
+                                            <input class="input" type="text" id="apellido" name="apellido" placeholder="Apellido" >
+                                        </div>
+                                </div>
+                                
                                 <div class="field">
                                     <label class="label"> Correo </label>
                                         <div class="control">
-                                            <input class="input" type="email" id="username" name="username" placeholder="ej amigo@hotmail.com" required>
+                                            <input class="input" type="email" id="email" name="email" placeholder="amigo@hotmail.com" >
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="label"> Contraseña </label>
                                         <div class="control">
-                                            <input class="input" type="password" id="password" name="password" placeholder="ej Contraseña" required>
+                                            <input class="input" type="password" id="password" name="password" placeholder="Contraseña" >
                                         </div>
                                 </div>
+
                                 <div class="field">
-                                    <button class="button is-success" type="submit" name="ingresar" value="Ingresar"> Ingresar </button>
-                                </div>
+                                    <label class="label"> 
+                                        Elegir topico de su interes 
+                                        <a title="Segun el topico elegido le llegaran notificaciones cuando se suba un libro de ese mismo topico"> 
+                                            ?
+                                        </a> 
+                                    </label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select name="topicoid" id="topicoid">
+                                                <?php
+                                                    while ($row = mysqli_fetch_array($resultadoTopicos, MYSQLI_ASSOC)) {
+                                                ?>
+                                                <option value="<?php echo $row['topicoid']; ?>"> <?php echo $row['topico'] ?> </option>
+                                            <?php 
+                                                }
+                                            ?> 
+                                            </select> 
+                                        </div>
+                                    </div> 
+                                </div> 
+
                                 <div class="field">
-                                    <p> ¿No tienes una cuenta? Crea una ahora </p>
-                                    <p> <a href="./registrarE.php"> Crear cuenta de estudiante </a> </p>
-                                    <p> <a href="./registrar.php"> Crear cuenta de profesor </a> </p>
+                                    <button class="button is-success" type="submit" name="guardar" value="Guardar"> Registrar </button>
+                                    <a class="button is-light" href="./index.php"> Regresar </a>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <?php
-                        if (isset($_SESSION['mensajeTexto'])) { 
-                    ?>
-                            <footer class="card-footer">
-                                <div class="container">
-                                    <div class="notification <?php echo $_SESSION['mensajeTipo'] ?>">
-                                        <button class="delete"></button>
-                                        <?php echo $_SESSION['mensajeTexto'] ?>
-                                    </div>
-                                </div>
-                            </footer>
-                        <?php } 
-                            // session_destroy();
-                        ?>
                 </div>
             </div>
         </div>

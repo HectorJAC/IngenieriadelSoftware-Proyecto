@@ -8,42 +8,38 @@
             session_start();
             $_SESSION['mensajeTexto'] = "Advertencia: Accion realizada no permitida";
             $_SESSION['mensajeTipo'] = "is-warning";
-            header("Location: ./asig-mant.php");
+            header("Location: ../pbodyE.php");
         }
 
         // CRUD - INS - DLT - UDT
         switch ($opcion) {
-                    case 'UDT':
-                        $id = filter_var($_POST['tareaid'], FILTER_SANITIZE_NUMBER_INT);
-                        $contenido = filter_var($_POST['contenido'], FILTER_SANITIZE_STRING);
-                        $tarea = filter_var($_POST['estado_tarea'], FILTER_SANITIZE_STRING);
-                        $estado = filter_var($_POST['estado'], FILTER_SANITIZE_STRING);
+                case 'DLT':
+                        $id = filter_var($_GET['notificacionid'], FILTER_SANITIZE_NUMBER_INT);
+    
                         // $query = " DELETE FROM `grupo` WHERE `grupoid` = '$id' ";
-                        $query = " UPDATE `tareas` SET `contenido` = '$contenido', `estado_tarea` = '$tarea', `estado` = '$estado' 
-                        WHERE `tareaid` = '$id' ";
+                        $query = " DELETE FROM `notificaciones_libros` WHERE `notificacionid` = '$id' ";
     
                         $resultado = mysqli_query($link, $query);
     
                     if (!$resultado) {
-                        $_SESSION['mensajeTexto'] = "Error al Entregar la Tarea";
+                        $_SESSION['mensajeTexto'] = "Error Borrando la Notificacion";
                         $_SESSION['mensajeTipo'] = "is-danger";
-                        //header("Location: ./asig-mant.php");
-                        die("Error en base de datos: " . mysqli_error($link));
+                        header("Location: ../pbodyE.php");
+                        // die("Error en base de datos: " . mysqli_error($link));
                     } else {
-                        $_SESSION['mensajeTexto'] = "Tarea Entregada con Exito";
+                        $_SESSION['mensajeTexto'] = "Notificacion Borrada con Exito";
                         $_SESSION['mensajeTipo'] = "is-success";
-                        header("Location: ./asig-mant.php");
+                        header("Location: ../pbodyE.php");
                     }
                     // cerrar la conexion
                     mysqli_close($link);
     
                     break;
 
-
             default:
                 $_SESSION['mensajeTexto'] = "Advertencia: Accion realizada no identificada";
                 $_SESSION['mensajeTipo'] = "is-warning";
-                header("Location: ./tareas-mant.php");
+                header("Location: ../pbodyE.php");
                 // die("Error en base de datos: " . mysqli_error($link));
                 break;
         }

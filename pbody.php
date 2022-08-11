@@ -13,15 +13,16 @@
 
 <!-- Titulos -->
   <div class="block">
-    <h1 class="title"> Proyecto Final </h1>
-      <h2 class="subtitle"> To-Do list </h2>
-    </div>
+    <h1 class="title"> Vista Profesor </h1>
+  </div>
 
   <!-- Contenido -->
   <div class="block">
     <h1> 
-      Bienvenido profesor <?php echo utf8_decode($row['username']); ?>  <?php echo utf8_decode($row['apellido']); ?>, 
-      para empezar a trabajar ingrese a unos de los apartados de la derecha.
+      Bienvenido profesor <?php echo utf8_decode($row['username']); ?>  <?php echo utf8_decode($row['apellido']); ?>. 
+      Puede crear un curso, crear una tarea dentro de un curso o subir un libro.
+      </br>
+      Para empezar a trabajar ingrese a uno de los apartados de la izquierda.
     </h1>
   </div>
 

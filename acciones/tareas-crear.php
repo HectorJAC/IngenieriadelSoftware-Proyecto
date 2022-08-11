@@ -1,8 +1,8 @@
 <?php
-    if (!empty($_GET['tareaid'])) {
+    if (!empty($_GET['cursoid'])) {
         include_once('../php/pheader.php');
-        $id = $_GET['tareaid'];
-        $row = EditarTareas($link, $id);
+        $id = $_GET['cursoid'];
+        $row = EditarCursos($link, $id);
 
     } else {
         session_start();
@@ -18,24 +18,41 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
         <li><a href="../pbody.php"> Inicio </a></li>
-            <li class="is-active"><a href="#" aria-current="page"> Mis Cursos - Editar Tarea </a></li>
+            <li class="is-active"><a href="#" aria-current="page"> Crea nueva Tarea </a></li>
         </ul>
     </nav>
     <!-- Titulos -->
     <div class="block">
-        <h1 class="title"> Editar Tarea  </h1>
-        <h2 class="subtitle"> <?php echo $row['titulo_tarea'] ?> </h2>
+        <h1 class="title"> Tareas </h1>
+        <h2 class="subtitle"> Crear nueva Tarea en <?php echo $row['nombre_curso'] ?> </h2>
     </div>
+    <!-- Mensajes de alertas -->
+    <?php
+        if (!empty($_SESSION['mensajeTexto'])) { 
+    ?>
+        <div class="block">
+            <div class="container">
+                <div class="notification <?php echo $_SESSION['mensajeTipo'] ?>">
+                    <button class="delete"></button>
+                        <?php echo $_SESSION['mensajeTexto'] ?>
+                </div>
+            </div>
+        </div>
+        <?php 
+            // session_destroy();
+            $_SESSION['mensajeTexto'] = null;
+            $_SESSION['mensajeTipo'] = null;
+        }    
+        ?>
 
-    <!-- Contenido -->
+    <!-- Contenido --> 
     <div class="block">
 
         <div class="columns">
-            <div class="column is-12">
-                <form action="tareas-crud.php?accion=UDT" method="POST" enctype="multipart/form-data" autocomplete="off">
-                    <input type="hidden" name="tareaid" id="tareaid" value="<?php echo $row['tareaid']; ?>">
+            <div class="column is-5">
+                <form action="./tareas-crud.php?accion=INS" method="POST" enctype="multipart/form-data" autocomplete="off"> 
                     <input type="hidden" name="cursoid" id="cursoid" value="<?php echo $row['cursoid']; ?>">
-                
+
                 <div class="field">
                     <label class="label"> Titulo de la tarea </label>
                     <div class="control">
@@ -58,16 +75,14 @@
 
                 <div class="field is-grouped">
                     <p class="control">
-                        <input class="button is-primary" type="submit" value="Editar tarea" name="guardar"> 
+                        <input class="button is-primary" type="submit" value="Crear tarea" name="guardar"> 
                         <a class="button is-light" href="javascript: history.go(-1)"> Regresar </a>
                     </p>
                 </div>
             </form>
-            </div>
         </div>
     </div>
-</div>
 
 <?php
-include_once('../php/pfooter.php');
+    include_once('../php/pfooter.php');
 ?>
